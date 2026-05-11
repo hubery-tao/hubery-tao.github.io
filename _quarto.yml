@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Xingjian Tao"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: blog.qmd
+        text: Blog
+      - href: files/resume_2026.pdf
+        text: CV
+  page-footer:
+    center: "© 2026 Xingjian Tao"
+
+format:
+  html:
+    theme:
+      - flatly
+    css: styles.css
+    toc: true

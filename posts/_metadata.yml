@@ -1,0 +1,10 @@
+toc: true
+author: "Xingjian Tao"
+freeze: auto
+format:
+  html:
+    code-fold: true
+    grid:
+      body-width: 900px
+      margin-width: 300px
+      gutter-width: 3rem

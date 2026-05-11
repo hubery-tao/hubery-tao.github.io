@@ -1,0 +1,6 @@
+/* Only narrow the about page/homepage */
+.quarto-about-trestles {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}

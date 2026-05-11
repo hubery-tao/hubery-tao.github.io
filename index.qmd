@@ -1,0 +1,42 @@
+---
+title: "Xingjian Tao"
+page-layout: full
+image: figs/avatar.jpg
+about:
+  template: trestles
+  image-shape: rounded
+  image-width: 15em
+  links:
+    - icon: github
+      text: GitHub
+      href: "https://github.com/hubery-tao"
+    - icon: linkedin
+      text: LinkedIn
+      href: "https://www.linkedin.com/in/hubery-tao/"
+    - icon: envelope
+      text: Email
+      href: "mailto:huberytao@outlook.com"
+    - icon: file-earmark-pdf
+      text: CV
+      href: "files/resume_2026.pdf"
+---
+
+::: {.column-page}
+
+## About
+
+I am a Ph.D. student in Operations Research at Georgia Tech, working with Prof. Nikolaos Sahinidis.
+
+## Research Interests
+
+My research interests are in randomized methods for algorithms and optimization. I am particularly interested in how randomization can replace deterministic or discrete decisions with distributions, leading to tractable expected objectives, relaxation-based algorithms, and sampling procedures. Examples include randomized rounding, randomized prediction in online learning, and multilinear relaxations in submodular optimization.
+
+## Current Work
+
+My current work focuses on symbolic regression through mixed-integer nonlinear optimization. I develop expression-tree formulations and use randomized rounding to recover symbolic expressions from continuous relaxations. I am also interested in formulation strength, numerical stability, and how variable bounds affect the quality of randomized-rounding probabilities.
+
+## Parallel and High-Performance Computing
+
+I have experience in high-performance computing and low-level systems implementation, including CUDA programming, SIMD-based numerical routines, lock-free data structures, and C++ infrastructure for quantitative finance. I am interested in parallel implementations of randomized algorithms, where independent samples can often be generated and evaluated with little communication.
+
+:::

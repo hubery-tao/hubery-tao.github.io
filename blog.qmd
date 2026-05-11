@@ -1,0 +1,22 @@
+---
+title: "Blog"
+page-layout: full
+
+listing:
+  contents: posts
+  sort: "date desc"
+  type: grid
+  grid-columns: 2
+  categories: true
+  sort-ui: true
+  filter-ui: true
+
+format:
+  html:
+    grid:
+      body-width: 900px
+      margin-width: 300px
+      gutter-width: 3rem
+---
+
+Notes on optimization, algorithms, and computation.

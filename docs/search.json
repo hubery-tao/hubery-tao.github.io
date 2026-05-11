@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Notes on optimization, algorithms, and computation.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nRandomized Rounding for MAX CUT\n\n\n\napproximation-algorithms\n\nrandomized-rounding\n\nsemidefinite-programming\n\n\n\nThis sample post verifies that the blog system renders and deploys correctly. The material is standard and may already be familiar to many readers.\n\n\n\nXingjian Tao\n\n\nMay 10, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/260510_max_cut_gw/index.html",
+    "href": "posts/260510_max_cut_gw/index.html",
+    "title": "Randomized Rounding for MAX CUT",
+    "section": "",
+    "text": "The input is an undirected graph \\(G=(V,E)\\) with nonnegative edge weights\n\\[\nw:E\\to \\mathbb R_+.\n\\]\nWe want to find a subset \\(S\\subseteq V\\) maximizing the total weight of edges crossing the cut:\n\\[\n\\max_{S\\subseteq V} \\quad w(\\delta(S)).\n\\]\nThroughout this note, we use the convention that\n\\[\n\\sum_{(i,j)\\in E}\n\\]\ncounts both orientations of each undirected edge. Therefore, each undirected edge \\(\\{i,j\\}\\) appears as both \\((i,j)\\) and \\((j,i)\\).\nLet\n\\[\ny_i =\n\\begin{cases}\n1, & i\\in S,\\\\\n-1, & i\\notin S.\n\\end{cases}\n\\]\nThen \\(i\\) and \\(j\\) are separated by the cut exactly when \\(y_i y_j=-1\\). Hence\n\\[\n\\frac{1-y_i y_j}{2}\n=\n\\begin{cases}\n1, & i \\text{ and } j \\text{ are separated},\\\\\n0, & \\text{otherwise}.\n\\end{cases}\n\\]\nSince each undirected edge is counted twice in the ordered sum, we have\n\\[\nw(\\delta(S))\n=\n\\frac{1}{2}\n\\sum_{(i,j)\\in E}\nw_{ij}\\frac{1-y_i y_j}{2}.\n\\]\nTherefore, MAX CUT can be formulated as\n\\[\n\\max\n\\quad\n\\frac{1}{2}\n\\sum_{(i,j)\\in E}\nw_{ij}\\frac{1-y_i y_j}{2}\n\\qquad\n\\text{s.t.}\n\\quad\ny_i\\in\\{-1,1\\},\\quad i\\in V.\n\\]"
+  },
+  {
+    "objectID": "posts/260510_max_cut_gw/index.html#max-cut",
+    "href": "posts/260510_max_cut_gw/index.html#max-cut",
+    "title": "Randomized Rounding for MAX CUT",
+    "section": "",
+    "text": "The input is an undirected graph \\(G=(V,E)\\) with nonnegative edge weights\n\\[\nw:E\\to \\mathbb R_+.\n\\]\nWe want to find a subset \\(S\\subseteq V\\) maximizing the total weight of edges crossing the cut:\n\\[\n\\max_{S\\subseteq V} \\quad w(\\delta(S)).\n\\]\nThroughout this note, we use the convention that\n\\[\n\\sum_{(i,j)\\in E}\n\\]\ncounts both orientations of each undirected edge. Therefore, each undirected edge \\(\\{i,j\\}\\) appears as both \\((i,j)\\) and \\((j,i)\\).\nLet\n\\[\ny_i =\n\\begin{cases}\n1, & i\\in S,\\\\\n-1, & i\\notin S.\n\\end{cases}\n\\]\nThen \\(i\\) and \\(j\\) are separated by the cut exactly when \\(y_i y_j=-1\\). Hence\n\\[\n\\frac{1-y_i y_j}{2}\n=\n\\begin{cases}\n1, & i \\text{ and } j \\text{ are separated},\\\\\n0, & \\text{otherwise}.\n\\end{cases}\n\\]\nSince each undirected edge is counted twice in the ordered sum, we have\n\\[\nw(\\delta(S))\n=\n\\frac{1}{2}\n\\sum_{(i,j)\\in E}\nw_{ij}\\frac{1-y_i y_j}{2}.\n\\]\nTherefore, MAX CUT can be formulated as\n\\[\n\\max\n\\quad\n\\frac{1}{2}\n\\sum_{(i,j)\\in E}\nw_{ij}\\frac{1-y_i y_j}{2}\n\\qquad\n\\text{s.t.}\n\\quad\ny_i\\in\\{-1,1\\},\\quad i\\in V.\n\\]"
+  },
+  {
+    "objectID": "posts/260510_max_cut_gw/index.html#sdp-relaxation",
+    "href": "posts/260510_max_cut_gw/index.html#sdp-relaxation",
+    "title": "Randomized Rounding for MAX CUT",
+    "section": "SDP relaxation",
+    "text": "SDP relaxation\nThe Goemans–Williamson relaxation replaces each scalar variable \\(y_i\\in\\{-1,1\\}\\) by a unit vector \\(v_i\\in\\mathbb R^n\\). The product \\(y_i y_j\\) is then relaxed to the inner product \\(v_i^\\top v_j\\).\nThis gives the SDP relaxation\n\\[\n\\begin{aligned}\n\\max \\quad&\n\\frac{1}{2}\n\\sum_{(i,j)\\in E}\nw_{ij}\\frac{1-v_i^\\top v_j}{2} \\\\\n\\text{s.t.}\\quad&\nv_i\\in\\mathbb R^n, && i\\in V,\\\\\n&v_i^\\top v_i=1, && i\\in V.\n\\end{aligned}\n\\tag{SDP}\n\\]\nLet \\(Z_{\\mathrm{SDP}}^*\\) denote the optimal value of this SDP relaxation."
+  },
+  {
+    "objectID": "posts/260510_max_cut_gw/index.html#randomized-rounding",
+    "href": "posts/260510_max_cut_gw/index.html#randomized-rounding",
+    "title": "Randomized Rounding for MAX CUT",
+    "section": "Randomized rounding",
+    "text": "Randomized rounding\nAfter solving the SDP, we round the vector solution into an actual cut.\nThe rounding procedure chooses a random hyperplane through the origin and separates vertices according to which side of the hyperplane their vectors lie on.\n\n\n\n\n\n\nNoteRandomized rounding algorithm\n\n\n\n\nSolve the SDP relaxation and obtain vectors \\(v_i\\) for all \\(i\\in V\\).\nSample a random vector \\(r\\sim N(0,I_n)\\).\nReturn\n\n\\[\nS=\\{\\,i\\in V: v_i^\\top r\\ge 0\\,\\}.\n\\]\n\n\nThe vector \\(r\\) defines a random hyperplane orthogonal to \\(r\\). Since\n\\[\n\\frac{r}{\\|r\\|_2}\n\\]\nis uniformly distributed over the unit sphere, this is equivalent to choosing a uniformly random hyperplane through the origin."
+  },
+  {
+    "objectID": "posts/260510_max_cut_gw/index.html#separation-probability",
+    "href": "posts/260510_max_cut_gw/index.html#separation-probability",
+    "title": "Randomized Rounding for MAX CUT",
+    "section": "Separation probability",
+    "text": "Separation probability\nFix an edge \\((i,j)\\in E\\). Let \\(\\theta_{ij}\\) be the angle between \\(v_i\\) and \\(v_j\\):\n\\[\n\\theta_{ij}=\\arccos(v_i^\\top v_j).\n\\]\nThe edge \\((i,j)\\) is cut if and only if \\(v_i\\) and \\(v_j\\) lie on opposite sides of the random hyperplane:\n\\[\n(v_i^\\top r)(v_j^\\top r)&lt;0.\n\\]\nIt suffices to consider the two-dimensional plane spanned by \\(v_i\\) and \\(v_j\\). The projection of \\(r\\) onto this plane has a uniformly random direction on the unit circle. Therefore, the probability that the random hyperplane separates \\(v_i\\) and \\(v_j\\) is exactly\n\\[\n\\mathbb P(i \\text{ and } j \\text{ are separated})\n=\n\\frac{\\theta_{ij}}{\\pi}.\n\\]"
+  },
+  {
+    "objectID": "posts/260510_max_cut_gw/index.html#approximation-guarantee",
+    "href": "posts/260510_max_cut_gw/index.html#approximation-guarantee",
+    "title": "Randomized Rounding for MAX CUT",
+    "section": "Approximation guarantee",
+    "text": "Approximation guarantee\nLet \\(Y_{ij}\\) be the indicator random variable for the event that \\(i\\) and \\(j\\) are separated by the rounded cut. Then\n\\[\nY_{ij}\n=\n\\begin{cases}\n1, & i \\text{ and } j \\text{ are separated},\\\\\n0, & \\text{otherwise}.\n\\end{cases}\n\\]\nBy linearity of expectation,\n\\[\n\\begin{aligned}\n\\mathbb E[w(\\delta(S))]\n&=\n\\mathbb E\\left[\n\\frac{1}{2}\n\\sum_{(i,j)\\in E} w_{ij}Y_{ij}\n\\right] \\\\\n&=\n\\frac{1}{2}\n\\sum_{(i,j)\\in E} w_{ij}\\mathbb E[Y_{ij}] \\\\\n&=\n\\frac{1}{2}\n\\sum_{(i,j)\\in E} w_{ij}\n\\mathbb P(i \\text{ and } j \\text{ are separated}).\n\\end{aligned}\n\\]\nFrom the separation probability above,\n\\[\n\\mathbb E[Y_{ij}]\n=\n\\frac{\\theta_{ij}}{\\pi}.\n\\]\nOn the other hand, the SDP contribution of edge \\((i,j)\\) is\n\\[\n\\frac{1-v_i^\\top v_j}{2}\n=\n\\frac{1-\\cos\\theta_{ij}}{2}.\n\\]\nDefine\n\\[\n\\alpha_{\\mathrm{GW}}\n=\n\\inf_{0\\le \\theta\\le \\pi}\n\\frac{\\theta/\\pi}{(1-\\cos\\theta)/2}.\n\\]\nNumerically,\n\\[\n\\alpha_{\\mathrm{GW}}\\approx 0.878.\n\\]\nBy definition of \\(\\alpha_{\\mathrm{GW}}\\), for every \\(\\theta\\in[0,\\pi]\\),\n\\[\n\\frac{\\theta}{\\pi}\n\\ge\n\\alpha_{\\mathrm{GW}}\n\\frac{1-\\cos\\theta}{2}.\n\\]\nApplying this with \\(\\theta=\\theta_{ij}\\), we obtain\n\\[\n\\mathbb E[Y_{ij}]\n=\n\\frac{\\theta_{ij}}{\\pi}\n\\ge\n\\alpha_{\\mathrm{GW}}\n\\frac{1-\\cos\\theta_{ij}}{2}\n=\n\\alpha_{\\mathrm{GW}}\n\\frac{1-v_i^\\top v_j}{2}.\n\\]\nTherefore,\n\\[\n\\begin{aligned}\n\\mathbb E[w(\\delta(S))]\n&=\n\\frac{1}{2}\n\\sum_{(i,j)\\in E} w_{ij}\\mathbb E[Y_{ij}] \\\\\n&\\ge\n\\frac{1}{2}\n\\sum_{(i,j)\\in E}\nw_{ij}\n\\alpha_{\\mathrm{GW}}\n\\frac{1-v_i^\\top v_j}{2} \\\\\n&=\n\\alpha_{\\mathrm{GW}}\n\\left(\n\\frac{1}{2}\n\\sum_{(i,j)\\in E}\nw_{ij}\n\\frac{1-v_i^\\top v_j}{2}\n\\right) \\\\\n&=\n\\alpha_{\\mathrm{GW}} Z_{\\mathrm{SDP}}^*.\n\\end{aligned}\n\\]\nSince the SDP is a relaxation of MAX CUT,\n\\[\nZ_{\\mathrm{SDP}}^*\\ge \\mathrm{OPT}.\n\\]\nThus\n\\[\n\\mathbb E[w(\\delta(S))]\n\\ge\n\\alpha_{\\mathrm{GW}}\\mathrm{OPT}.\n\\]\nHence the randomized rounding algorithm gives an \\(\\alpha_{\\mathrm{GW}}\\)-approximation for MAX CUT."
+  },
+  {
+    "objectID": "posts/260510_max_cut_gw/index.html#tightness",
+    "href": "posts/260510_max_cut_gw/index.html#tightness",
+    "title": "Randomized Rounding for MAX CUT",
+    "section": "Tightness",
+    "text": "Tightness\nThe approximation ratio of the Goemans–Williamson algorithm is\n\\[\n\\alpha_{\\mathrm{GW}}\n=\n\\inf_{0\\le \\theta\\le \\pi}\n\\frac{\\theta/\\pi}{(1-\\cos\\theta)/2}\n\\approx 0.878.\n\\]\nAssuming the Unique Games Conjecture, for every \\(\\varepsilon&gt;0\\), there is no polynomial-time algorithm achieving an approximation ratio larger than\n\\[\n\\alpha_{\\mathrm{GW}}+\\varepsilon\n\\]\nfor MAX CUT, unless \\(\\mathrm{P}=\\mathrm{NP}\\)."
+  },
+  {
+    "objectID": "posts/260510_max_cut_gw/index.html#summary",
+    "href": "posts/260510_max_cut_gw/index.html#summary",
+    "title": "Randomized Rounding for MAX CUT",
+    "section": "Summary",
+    "text": "Summary\nThe Goemans–Williamson algorithm consists of three steps:\n\nWrite MAX CUT as a quadratic optimization problem over variables \\(y_i\\in\\{-1,1\\}\\).\nRelax the variables to unit vectors \\(v_i\\) and solve the SDP.\nRound the vector solution using a random hyperplane.\n\nThe key geometric identity is that if the angle between \\(v_i\\) and \\(v_j\\) is \\(\\theta\\), then a uniformly random hyperplane separates them with probability\n\\[\n\\frac{\\theta}{\\pi}.\n\\]\nComparing this probability with the SDP contribution\n\\[\n\\frac{1-\\cos\\theta}{2}\n\\]\ngives the approximation ratio\n\\[\n\\alpha_{\\mathrm{GW}}\\approx 0.878.\n\\]"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Xingjian Tao",
+    "section": "",
+    "text": "I am a Ph.D. student in Operations Research at Georgia Tech, working with Prof. Nikolaos Sahinidis.\n\n\n\nMy research interests are in randomized methods for algorithms and optimization. I am particularly interested in how randomization can replace deterministic or discrete decisions with distributions, leading to tractable expected objectives, relaxation-based algorithms, and sampling procedures. Examples include randomized rounding, randomized prediction in online learning, and multilinear relaxations in submodular optimization.\n\n\n\nMy current work focuses on symbolic regression through mixed-integer nonlinear optimization. I develop expression-tree formulations and use randomized rounding to recover symbolic expressions from continuous relaxations. I am also interested in formulation strength, numerical stability, and how variable bounds affect the quality of randomized-rounding probabilities.\n\n\n\nI have experience in high-performance computing and low-level systems implementation, including CUDA programming, SIMD-based numerical routines, lock-free data structures, and C++ infrastructure for quantitative finance. I am interested in parallel implementations of randomized algorithms, where independent samples can often be generated and evaluated with little communication."
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Xingjian Tao",
+    "section": "",
+    "text": "I am a Ph.D. student in Operations Research at Georgia Tech, working with Prof. Nikolaos Sahinidis."
+  },
+  {
+    "objectID": "index.html#research-interests",
+    "href": "index.html#research-interests",
+    "title": "Xingjian Tao",
+    "section": "",
+    "text": "My research interests are in randomized methods for algorithms and optimization. I am particularly interested in how randomization can replace deterministic or discrete decisions with distributions, leading to tractable expected objectives, relaxation-based algorithms, and sampling procedures. Examples include randomized rounding, randomized prediction in online learning, and multilinear relaxations in submodular optimization."
+  },
+  {
+    "objectID": "index.html#current-work",
+    "href": "index.html#current-work",
+    "title": "Xingjian Tao",
+    "section": "",
+    "text": "My current work focuses on symbolic regression through mixed-integer nonlinear optimization. I develop expression-tree formulations and use randomized rounding to recover symbolic expressions from continuous relaxations. I am also interested in formulation strength, numerical stability, and how variable bounds affect the quality of randomized-rounding probabilities."
+  },
+  {
+    "objectID": "index.html#parallel-and-high-performance-computing",
+    "href": "index.html#parallel-and-high-performance-computing",
+    "title": "Xingjian Tao",
+    "section": "",
+    "text": "I have experience in high-performance computing and low-level systems implementation, including CUDA programming, SIMD-based numerical routines, lock-free data structures, and C++ infrastructure for quantitative finance. I am interested in parallel implementations of randomized algorithms, where independent samples can often be generated and evaluated with little communication."
+  }
+]

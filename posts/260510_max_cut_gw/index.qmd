@@ -1,0 +1,316 @@
+---
+title: "Randomized Rounding for MAX CUT"
+date: "2026-05-10"
+categories: [approximation-algorithms, randomized-rounding, semidefinite-programming]
+description: "This sample post verifies that the blog system renders and deploys correctly. The material is standard and may already be familiar to many readers."
+---
+
+## MAX CUT
+
+The input is an undirected graph $G=(V,E)$ with nonnegative edge weights
+
+$$
+w:E\to \mathbb R_+.
+$$
+
+We want to find a subset $S\subseteq V$ maximizing the total weight of edges crossing the cut:
+
+$$
+\max_{S\subseteq V} \quad w(\delta(S)).
+$$
+
+Throughout this note, we use the convention that
+
+$$
+\sum_{(i,j)\in E}
+$$
+
+counts both orientations of each undirected edge. Therefore, each undirected edge $\{i,j\}$ appears as both $(i,j)$ and $(j,i)$.
+
+Let
+
+$$
+y_i =
+\begin{cases}
+1, & i\in S,\\
+-1, & i\notin S.
+\end{cases}
+$$
+
+Then $i$ and $j$ are separated by the cut exactly when $y_i y_j=-1$. Hence
+
+$$
+\frac{1-y_i y_j}{2}
+=
+\begin{cases}
+1, & i \text{ and } j \text{ are separated},\\
+0, & \text{otherwise}.
+\end{cases}
+$$
+
+Since each undirected edge is counted twice in the ordered sum, we have
+
+$$
+w(\delta(S))
+=
+\frac{1}{2}
+\sum_{(i,j)\in E}
+w_{ij}\frac{1-y_i y_j}{2}.
+$$
+
+Therefore, MAX CUT can be formulated as
+
+$$
+\max
+\quad
+\frac{1}{2}
+\sum_{(i,j)\in E}
+w_{ij}\frac{1-y_i y_j}{2}
+\qquad
+\text{s.t.}
+\quad
+y_i\in\{-1,1\},\quad i\in V.
+$$
+
+## SDP relaxation
+
+The Goemans--Williamson relaxation replaces each scalar variable $y_i\in\{-1,1\}$ by a unit vector $v_i\in\mathbb R^n$. The product $y_i y_j$ is then relaxed to the inner product $v_i^\top v_j$.
+
+This gives the SDP relaxation
+
+$$
+\begin{aligned}
+\max \quad&
+\frac{1}{2}
+\sum_{(i,j)\in E}
+w_{ij}\frac{1-v_i^\top v_j}{2} \\
+\text{s.t.}\quad&
+v_i\in\mathbb R^n, && i\in V,\\
+&v_i^\top v_i=1, && i\in V.
+\end{aligned}
+\tag{SDP}
+$$
+
+Let $Z_{\mathrm{SDP}}^*$ denote the optimal value of this SDP relaxation.
+
+## Randomized rounding
+
+After solving the SDP, we round the vector solution into an actual cut.
+
+The rounding procedure chooses a random hyperplane through the origin and separates vertices according to which side of the hyperplane their vectors lie on.
+
+::: {.callout-note title="Randomized rounding algorithm"}
+1. Solve the SDP relaxation and obtain vectors $v_i$ for all $i\in V$.
+2. Sample a random vector $r\sim N(0,I_n)$.
+3. Return
+
+$$
+S=\{\,i\in V: v_i^\top r\ge 0\,\}.
+$$
+:::
+
+The vector $r$ defines a random hyperplane orthogonal to $r$. Since
+
+$$
+\frac{r}{\|r\|_2}
+$$
+
+is uniformly distributed over the unit sphere, this is equivalent to choosing a uniformly random hyperplane through the origin.
+
+## Separation probability
+
+Fix an edge $(i,j)\in E$. Let $\theta_{ij}$ be the angle between $v_i$ and $v_j$:
+
+$$
+\theta_{ij}=\arccos(v_i^\top v_j).
+$$
+
+The edge $(i,j)$ is cut if and only if $v_i$ and $v_j$ lie on opposite sides of the random hyperplane:
+
+$$
+(v_i^\top r)(v_j^\top r)<0.
+$$
+
+It suffices to consider the two-dimensional plane spanned by $v_i$ and $v_j$. The projection of $r$ onto this plane has a uniformly random direction on the unit circle. Therefore, the probability that the random hyperplane separates $v_i$ and $v_j$ is exactly
+
+$$
+\mathbb P(i \text{ and } j \text{ are separated})
+=
+\frac{\theta_{ij}}{\pi}.
+$$
+
+## Approximation guarantee
+
+Let $Y_{ij}$ be the indicator random variable for the event that $i$ and $j$ are separated by the rounded cut. Then
+
+$$
+Y_{ij}
+=
+\begin{cases}
+1, & i \text{ and } j \text{ are separated},\\
+0, & \text{otherwise}.
+\end{cases}
+$$
+
+By linearity of expectation,
+
+$$
+\begin{aligned}
+\mathbb E[w(\delta(S))]
+&=
+\mathbb E\left[
+\frac{1}{2}
+\sum_{(i,j)\in E} w_{ij}Y_{ij}
+\right] \\
+&=
+\frac{1}{2}
+\sum_{(i,j)\in E} w_{ij}\mathbb E[Y_{ij}] \\
+&=
+\frac{1}{2}
+\sum_{(i,j)\in E} w_{ij}
+\mathbb P(i \text{ and } j \text{ are separated}).
+\end{aligned}
+$$
+
+From the separation probability above,
+
+$$
+\mathbb E[Y_{ij}]
+=
+\frac{\theta_{ij}}{\pi}.
+$$
+
+On the other hand, the SDP contribution of edge $(i,j)$ is
+
+$$
+\frac{1-v_i^\top v_j}{2}
+=
+\frac{1-\cos\theta_{ij}}{2}.
+$$
+
+Define
+
+$$
+\alpha_{\mathrm{GW}}
+=
+\inf_{0\le \theta\le \pi}
+\frac{\theta/\pi}{(1-\cos\theta)/2}.
+$$
+
+Numerically,
+
+$$
+\alpha_{\mathrm{GW}}\approx 0.878.
+$$
+
+By definition of $\alpha_{\mathrm{GW}}$, for every $\theta\in[0,\pi]$,
+
+$$
+\frac{\theta}{\pi}
+\ge
+\alpha_{\mathrm{GW}}
+\frac{1-\cos\theta}{2}.
+$$
+
+Applying this with $\theta=\theta_{ij}$, we obtain
+
+$$
+\mathbb E[Y_{ij}]
+=
+\frac{\theta_{ij}}{\pi}
+\ge
+\alpha_{\mathrm{GW}}
+\frac{1-\cos\theta_{ij}}{2}
+=
+\alpha_{\mathrm{GW}}
+\frac{1-v_i^\top v_j}{2}.
+$$
+
+Therefore,
+
+$$
+\begin{aligned}
+\mathbb E[w(\delta(S))]
+&=
+\frac{1}{2}
+\sum_{(i,j)\in E} w_{ij}\mathbb E[Y_{ij}] \\
+&\ge
+\frac{1}{2}
+\sum_{(i,j)\in E}
+w_{ij}
+\alpha_{\mathrm{GW}}
+\frac{1-v_i^\top v_j}{2} \\
+&=
+\alpha_{\mathrm{GW}}
+\left(
+\frac{1}{2}
+\sum_{(i,j)\in E}
+w_{ij}
+\frac{1-v_i^\top v_j}{2}
+\right) \\
+&=
+\alpha_{\mathrm{GW}} Z_{\mathrm{SDP}}^*.
+\end{aligned}
+$$
+
+Since the SDP is a relaxation of MAX CUT,
+
+$$
+Z_{\mathrm{SDP}}^*\ge \mathrm{OPT}.
+$$
+
+Thus
+
+$$
+\mathbb E[w(\delta(S))]
+\ge
+\alpha_{\mathrm{GW}}\mathrm{OPT}.
+$$
+
+Hence the randomized rounding algorithm gives an $\alpha_{\mathrm{GW}}$-approximation for MAX CUT.
+
+## Tightness
+
+The approximation ratio of the Goemans--Williamson algorithm is
+
+$$
+\alpha_{\mathrm{GW}}
+=
+\inf_{0\le \theta\le \pi}
+\frac{\theta/\pi}{(1-\cos\theta)/2}
+\approx 0.878.
+$$
+
+Assuming the Unique Games Conjecture, for every $\varepsilon>0$, there is no polynomial-time algorithm achieving an approximation ratio larger than
+
+$$
+\alpha_{\mathrm{GW}}+\varepsilon
+$$
+
+for MAX CUT, unless $\mathrm{P}=\mathrm{NP}$.
+
+## Summary
+
+The Goemans--Williamson algorithm consists of three steps:
+
+1. Write MAX CUT as a quadratic optimization problem over variables $y_i\in\{-1,1\}$.
+2. Relax the variables to unit vectors $v_i$ and solve the SDP.
+3. Round the vector solution using a random hyperplane.
+
+The key geometric identity is that if the angle between $v_i$ and $v_j$ is $\theta$, then a uniformly random hyperplane separates them with probability
+
+$$
+\frac{\theta}{\pi}.
+$$
+
+Comparing this probability with the SDP contribution
+
+$$
+\frac{1-\cos\theta}{2}
+$$
+
+gives the approximation ratio
+
+$$
+\alpha_{\mathrm{GW}}\approx 0.878.
+$$
