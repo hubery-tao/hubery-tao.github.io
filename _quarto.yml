@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Xingjian Tao"
+  site-url: "https://hubery-tao.github.io"
   navbar:
     left:
       - href: index.qmd
