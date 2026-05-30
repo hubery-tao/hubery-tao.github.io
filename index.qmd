@@ -25,7 +25,7 @@ about:
 
 ## About
 
-I am a Ph.D. student in Operations Research at Georgia Tech, working with Prof. Nikolaos Sahinidis.
+I am a Ph.D. student in Algorithms, Combinatorics, and Optimization (ACO) at Georgia Tech, working with Prof. Nikolaos Sahinidis.
 
 ## Research Interests
 
