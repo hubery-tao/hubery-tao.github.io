@@ -1,7 +1,7 @@
 ---
 title: "Xingjian Tao"
 page-layout: full
-image: figs/avatar.jpg
+image: figs/travel_avatar.jpg
 about:
   template: trestles
   image-shape: rounded
@@ -38,5 +38,11 @@ My current work focuses on symbolic regression through mixed-integer nonlinear o
 ## Parallel and High-Performance Computing
 
 I have experience in high-performance computing and low-level systems implementation, including CUDA programming, SIMD-based numerical routines, lock-free data structures, and C++ infrastructure for quantitative finance. I am interested in parallel implementations of randomized algorithms, where independent samples can often be generated and evaluated with little communication.
+
+## Talks
+
+- **Randomized Rounding for Symbolic Regression**
+  - INFORMS Annual Meeting, 2025
+  - INFORMS Optimization Society Conference, 2026
 
 :::
