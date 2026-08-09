@@ -4,7 +4,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Notes on optimization, algorithms, and computation.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nRandomized Rounding for MAX CUT\n\n\n\napproximation-algorithms\n\nrandomized-rounding\n\nsemidefinite-programming\n\n\n\nThis sample post verifies that the blog system renders and deploys correctly. The material is standard and may already be familiar to many readers.\n\n\n\nHubery Tao\n\n\nMay 10, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "Notes on optimization, algorithms, and computation.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nRandomized Rounding for MAX CUT\n\n\n\napproximation-algorithms\n\nrandomized-rounding\n\nsemidefinite-programming\n\n\n\nThis sample post verifies that the blog system renders and deploys correctly. The material is standard and may already be familiar to many readers.\n\n\n\nXingjian Tao\n\n\nMay 10, 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/260510_max_cut_gw/index.html",
@@ -65,42 +65,42 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Hubery Tao",
+    "title": "Xingjian (Hubert) Tao",
     "section": "",
     "text": "I am a Ph.D. student in Algorithms, Combinatorics, and Optimization (ACO) at Georgia Tech, working with Prof. Nikolaos Sahinidis.\n\n\n\nMy research interests are in randomized methods for algorithms and optimization. I am particularly interested in how randomization can replace deterministic or discrete decisions with distributions, leading to tractable expected objectives, relaxation-based algorithms, and sampling procedures. Examples include randomized rounding, randomized prediction in online learning, and multilinear relaxations in submodular optimization.\n\n\n\nMy current work focuses on symbolic regression through mixed-integer nonlinear optimization. I develop expression-tree formulations and use randomized rounding to recover symbolic expressions from continuous relaxations. I am also interested in formulation strength, numerical stability, and how variable bounds affect the quality of randomized-rounding probabilities.\n\n\n\nI have experience in high-performance computing and low-level systems implementation, including CUDA programming, SIMD-based numerical routines, lock-free data structures, and C++ infrastructure for quantitative finance. I am interested in parallel implementations of randomized algorithms, where independent samples can often be generated and evaluated with little communication.\n\n\n\n\nRandomized Rounding for Symbolic Regression\n\nINFORMS Annual Meeting, 2025\nINFORMS Optimization Society Conference, 2026"
   },
   {
     "objectID": "index.html#about",
     "href": "index.html#about",
-    "title": "Hubery Tao",
+    "title": "Xingjian (Hubert) Tao",
     "section": "",
     "text": "I am a Ph.D. student in Algorithms, Combinatorics, and Optimization (ACO) at Georgia Tech, working with Prof. Nikolaos Sahinidis."
   },
   {
     "objectID": "index.html#research-interests",
     "href": "index.html#research-interests",
-    "title": "Hubery Tao",
+    "title": "Xingjian (Hubert) Tao",
     "section": "",
     "text": "My research interests are in randomized methods for algorithms and optimization. I am particularly interested in how randomization can replace deterministic or discrete decisions with distributions, leading to tractable expected objectives, relaxation-based algorithms, and sampling procedures. Examples include randomized rounding, randomized prediction in online learning, and multilinear relaxations in submodular optimization."
   },
   {
     "objectID": "index.html#current-work",
     "href": "index.html#current-work",
-    "title": "Hubery Tao",
+    "title": "Xingjian (Hubert) Tao",
     "section": "",
     "text": "My current work focuses on symbolic regression through mixed-integer nonlinear optimization. I develop expression-tree formulations and use randomized rounding to recover symbolic expressions from continuous relaxations. I am also interested in formulation strength, numerical stability, and how variable bounds affect the quality of randomized-rounding probabilities."
   },
   {
     "objectID": "index.html#parallel-and-high-performance-computing",
     "href": "index.html#parallel-and-high-performance-computing",
-    "title": "Hubery Tao",
+    "title": "Xingjian (Hubert) Tao",
     "section": "",
     "text": "I have experience in high-performance computing and low-level systems implementation, including CUDA programming, SIMD-based numerical routines, lock-free data structures, and C++ infrastructure for quantitative finance. I am interested in parallel implementations of randomized algorithms, where independent samples can often be generated and evaluated with little communication."
   },
   {
     "objectID": "index.html#talks",
     "href": "index.html#talks",
-    "title": "Hubery Tao",
+    "title": "Xingjian (Hubert) Tao",
     "section": "",
     "text": "Randomized Rounding for Symbolic Regression\n\nINFORMS Annual Meeting, 2025\nINFORMS Optimization Society Conference, 2026"
   }

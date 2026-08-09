@@ -1,5 +1,5 @@
 ---
-title: "Hubery Tao"
+title: "Xingjian (Hubert)  Tao"
 page-layout: full
 image: figs/travel_avatar.jpg
 about:
