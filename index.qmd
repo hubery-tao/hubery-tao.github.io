@@ -1,5 +1,5 @@
 ---
-title: "Xingjian (Hubert)  Tao"
+title: "Xingjian (Hubery) Tao"
 page-layout: full
 image: figs/travel_avatar.jpg
 about:
@@ -16,9 +16,6 @@ about:
     - icon: envelope
       text: Email
       href: "mailto:huberytao@outlook.com"
-    - icon: file-earmark-pdf
-      text: CV
-      href: "files/resume_2026.pdf"
 ---
 
 ::: {.column-page}

@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Xingjian (Hubert)  Tao"
+  title: "Xingjian (Hubery) Tao"
   site-url: "https://hubery-tao.github.io"
   navbar:
     left:
@@ -11,8 +11,6 @@ website:
         text: Home
       - href: blog.qmd
         text: Blog
-      - href: files/resume_2026.pdf
-        text: CV
   page-footer:
     center: "© 2026 Xingjian Tao"
 

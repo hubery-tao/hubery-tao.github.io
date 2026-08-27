@@ -4,3 +4,37 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Place the profile card slightly above center without consuming a full screen. */
+@media (min-width: 992px) {
+  .quarto-about-trestles {
+    align-items: flex-start;
+    padding-top: 2em !important;
+  }
+
+  .quarto-about-trestles .about-entity {
+    position: sticky;
+    top: 5rem;
+    justify-content: flex-start;
+    padding-top: 2.5rem;
+  }
+
+  .quarto-about-trestles .about-contents {
+    padding-top: 0;
+  }
+
+  .quarto-about-trestles .about-contents h2 {
+    margin-top: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .quarto-about-trestles .about-contents p {
+    margin-bottom: 0.65rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .quarto-about-trestles .about-entity {
+    padding-top: 1.5rem;
+  }
+}
